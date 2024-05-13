@@ -3,19 +3,23 @@ import express from "express";
 import { IS_PROD, PORT } from "./constants";
 import { router } from "./routes";
 
-async function main() {
-  const app = express();
+const app = express();
 
-  app.use(express.json());
-  app.use(router);
+app.use(express.json());
+app.use(router);
 
-  app.listen(PORT, () => {
+const startServer = (port: string | number) => {
+  return app.listen(port, () => {
     console.log(
-      `🚀 Server is running on port: ${PORT} and in ${
+      `🚀 Server is running on port: ${port} and in ${
         IS_PROD ? "production" : "development."
       }`
     );
   });
+};
+
+if (require.main === module) {
+  startServer(PORT);
 }
 
-main();
+export { app, startServer };
