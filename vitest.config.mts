@@ -5,6 +5,6 @@ export default defineConfig({
     globals: true,
     environment: "node",
     watch: true,
-    setupFiles: "ts-node/register", // Ensure ts-node is used for TypeScript support
+    setupFiles: "ts-node/register",
   },
 });
